@@ -1,0 +1,12 @@
+FROM wordpress:5.8.1-php7.4-apache
+
+RUN apt-get update && \
+	apt-get install -y  --no-install-recommends ssl-cert && \
+	rm -r /var/lib/apt/lists/* && \
+	a2enmod ssl && \
+	a2ensite default-ssl
+
+COPY ssl.crt /etc/ssl/certs/ssl-cert-snakeoil.pem
+COPY ssl.key /etc/ssl/private/ssl-cert-snakeoil.key
+
+EXPOSE 80 443

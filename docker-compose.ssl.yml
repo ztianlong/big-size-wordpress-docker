@@ -15,11 +15,7 @@ services:
   wordpress:
     depends_on:
       - db
-    # 使用最新版
-    # image: wordpress:latest
-    # 使用特定版本
-    image: wordpress:5.8.1-php7.4-apache
-    
+    build: ./docker/wordpress
     volumes:
       - wordpress_data:/var/www/html
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
